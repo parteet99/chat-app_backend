@@ -14,6 +14,17 @@ export const findUserByEmail = async(
     return result.rows[0] ?? null;
 }
 
+export const findUserBydId = async(
+    userId: string
+) => {
+    const query = `SELECT id, email, display_name, avatar_key, created_at
+        FROM users WHERE id = $1
+    `
+    const param = [userId];
+    const result = await pool.query(query, param);
+    return result.rows[0] ?? null;
+}
+
 export const createUser = async(
     email: string,
     passwordHash: string,

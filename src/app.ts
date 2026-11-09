@@ -3,6 +3,8 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 
 import { corsMiddleware } from "./config/cors";
+import authRoutes from "./modules/auth/auth.routes";
+import { errorMiddleware } from "./middleware/error.middleware";
 
 const app = express();
 
@@ -20,5 +22,11 @@ app.get("/api/health", (req, res) => {
         message: "Chat api is running"
     })
 })
+
+// authentication routes
+app.use("/api/auth", authRoutes);
+
+// global error handler (always keep it at last)
+app.use(errorMiddleware);
 
 export default app;

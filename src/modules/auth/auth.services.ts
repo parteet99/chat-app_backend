@@ -7,7 +7,6 @@ import { hashPassword, comparePassword } from "../../utils/password";
 import { ApiError } from "../../utils/ApiError";
 
 import type { RegisterInput, LoginInput } from "./auth.types";
-import { kMaxLength } from "buffer";
 
 const getJwtSecret = () => {
     const secret = process.env.JWT_SECRET;
